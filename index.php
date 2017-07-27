@@ -23,9 +23,8 @@
 	</div>
 	</div>
 	</div>
-
+<p style="color:green;">Nesse teste você insere um número de 11 á 49998 e ele retorna os dados principais do programa encontrado através da API &nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-info" href="https://www.themoviedb.org/"> TheMovieDB </a></p>
 <?php
-
 
 $url = 'https://api.themoviedb.org/';
 $key = '?api_key=b5147bc48922cf736a3dcc3031ad0e8a';
@@ -35,21 +34,18 @@ $codigo = $_GET['codigo'];
 $search = '3/movie/'. $codigo;
 
 
-
+if($codigo){
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url.$search.$key);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $data = curl_exec($ch);
 curl_close ($ch);
 
-
 $var = json_decode($data);
 
 echo '<pre>';
-echo $var->belongs_to_collection->name . PHP_EOL;
 var_dump($var);
-echo '<pre>';
-
+}
 
 ?>
 
