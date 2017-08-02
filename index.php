@@ -19,8 +19,13 @@
 			</form>
 		</table>
 	</div>
-<p style="color:green;">Nesse teste você insere um número de 11 á 49998 e ele retorna os dados principais do programa encontrado através da API e um var_dump de todo o resultado para maiores detalhes. &nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-info" href="https://www.themoviedb.org/"> TheMovieDB </a></p><br>
-<?php if($_GET['codigo']): require_once('apiconn.php'); ?>
+<p style="color:green;">Nesse teste você insere um número de 11 á 49998 e ele retorna os dados principais do programa encontrado
+ através da API e um var_dump de todo o resultado para maiores detalhes. &nbsp;&nbsp;&nbsp;&nbsp; 
+ <a class="btn btn-info" href="https://www.themoviedb.org/"> TheMovieDB </a></p><br>
+ <form action="porPopularidade.php">
+<button type="submit" class="btn btn-info">Popularidade</button>
+</form>
+<?php require_once('porCodigo.php'); ?>
 <table class="table table-striped">
 	<tr>
 		<td style="font-weight:600;">Original Title </td>
@@ -44,7 +49,7 @@
 	</tr>
 </table>
 <br>
-<?php echo '<pre>'; var_dump($var); endif; ?>
+<?php echo '<pre>'; var_dump($var);?>
 </div>
 </body>
 </html>
