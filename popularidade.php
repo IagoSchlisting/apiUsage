@@ -11,45 +11,72 @@
 <div class="container" style="margin-top:10px;">
 	<div class="panel">
 		<div class="panel-heading">
-			<?php // ------------------------------PAGINATION ---------------------------- // ?>
-			<?php echo $atual . PHP_EOL ?>
-			<a href="porPopularidade.php?number=<?=1?>" class="btn btn-info" ><?=1?></a> ... 
 
-			<?php for($i=2; $i <= 8; $i++): ?>
-			<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-info" ><?=$i?></a>
+		<?php // -------------------------------------------PAGINATION --------------------------------------- // ?>
+     		<a href="porPopularidade.php?number=<?=1?>" class="btn btn-default" ><?=1?></a> ... 
+			
+			<?php if($atual == 1) : ?>
+				<?php for($i=2; $i < 7; $i++): ?>
+				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
 			<?php endfor; ?>
+			<?php elseif($atual >= $pages - 5):  ?>
+				<?php for($i=$pages - 5; $i < $pages; $i++): ?>
+				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+			<?php endfor; ?>
+			<?php else: ?>
+				<?php for($i=$atual; $i <= $atual + 4; $i++): ?>
+				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+				<?php endfor; ?>
+			<?php endif; ?>
 
-			... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-info" ><?=$pages?></a>
+			... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-default" ><?=$pages?></a>
+		<?php // --------------------------------------------------------------------------------------------- // ?>
 
-			<?php // ------------------------------PAGINATION ---------------------------- // ?>
+
+		<?php // ------------------------------Resultados - FIlmes ------------------------------------------- // ?>
+
 		</div>
-	</div>
-	<?php foreach ($results as $result): ?>
-	<table class="table table-striped">
-		<tr>
-			<td style="font-weight:bold"><input class="form-control" disabled type="text" value="<?=$result->original_title?>"></td>	
-		</tr>
-		<tr>
-			<td><input class="form-control" disabled type="text" value="<?=$result->release_date?>"></td>	
-		</tr>
-		<tr>
-			<td><input class="form-control" disabled type="text" value="<?=$result->overview?>"></td>	
-		</tr>
-	</table>
-	<?php endforeach; ?>
+		<div class="panel-body">
+			<?php foreach ($results as $key=>$result): ?>
+			<table class="table table-striped">
+				<tr>
+					<td style="font-weight:bold"><input class="form-control" disabled type="text" value="<?=$result->original_title?>"></td>	
+				</tr>
+				<tr>
+					<td><input class="form-control" disabled type="text" value="<?=$result->release_date?>"></td>	
+				</tr>
+				<tr>
+					<td><input class="form-control" disabled type="text" value="<?=$result->overview?>"></td>	
+				</tr>
+			</table>
+			<?php endforeach; ?>
 
-	<?php // ------------------------------PAGINATION ---------------------------- // ?>
+			<?php // ----------------------------------------------------------------------------------------- // ?>
 
-	<a href="porPopularidade.php?number=<?=1?>" class="btn btn-info" ><?=1?></a> ... 
 
-	<?php for($i=2; $i <= 8; $i++): ?>
-	<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-info" ><?=$i?></a>
-	<?php endfor; ?>
 
-	... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-info" ><?=$pages?></a>
+			<?php // -------------------------------------------PAGINATION ----------------------------------- // ?>
+		     		<a href="porPopularidade.php?number=<?=1?>" class="btn btn-default" ><?=1?></a> ... 
+					
+					<?php if($atual == 1) : ?>
+						<?php for($i=2; $i < 7; $i++): ?>
+						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+					<?php endfor; ?>
+					<?php elseif($atual >= $pages - 5):  ?>
+						<?php for($i=$pages - 5; $i < $pages; $i++): ?>
+						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+					<?php endfor; ?>
+					<?php else: ?>
+						<?php for($i=$atual; $i <= $atual + 4; $i++): ?>
+						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+						<?php endfor; ?>
+					<?php endif; ?>
 
-	<?php // ------------------------------PAGINATION ---------------------------- // ?>
+					... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-default" ><?=$pages?></a>
+			<?php // ----------------------------------------------------------------------------------------- // ?>
 
+		</div>
+   </div>
 </div>
 </body>
 </html>
