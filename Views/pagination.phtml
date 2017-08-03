@@ -1,0 +1,27 @@
+<?php if($atual_page == 1 or $atual_page == 2 or $atual_page == 3) :?>
+					<?php for($i=1; $i < 7; $i++): ?>
+						<?php if($i == $atual_page) : ?>
+						<a href="popularidade.phtml?page=<?=$i?>" class="btn btn-info" ><?=$i?></a>
+						<?php else: ?>
+						<a href="popularidade.phtml?page=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+						<?php endif; ?>
+					<?php endfor; ?>
+					... <a href="popularidade.phtml?page=<?=$total_pages?>" class="btn btn-default" ><?=$total_pages?></a>
+			<?php elseif($atual_page < $total_pages - 3): ?>
+						<a href="popularidade.phtml?page=<?=1?>" class="btn btn-default" ><?=1?></a>...
+						<a href="popularidade.phtml?page=<?=$atual_page-2?>" class="btn btn-default" ><?=$atual_page-2?></a>
+						<a href="popularidade.phtml?page=<?=$atual_page-1?>" class="btn btn-default" ><?=$atual_page-1?></a>
+						<a href="popularidade.phtml?page=<?=$atual_page?>" class="btn btn-info" ><?=$atual_page?></a>
+						<a href="popularidade.phtml?page=<?=$atual_page+1?>" class="btn btn-default" ><?=$atual_page+1?></a>
+						<a href="popularidade.phtml?page=<?=$atual_page+2?>" class="btn btn-default" ><?=$atual_page+2?></a>	
+						... <a href="popularidade.phtml?page=<?=$total_pages?>" class="btn btn-default" ><?=$total_pages?></a>
+			<?php else: ?>
+					<a href="popularidade.phtml?page=<?=1?>" class="btn btn-default" ><?=1?></a>...
+					<?php for($i=$total_pages - 4; $i <= $total_pages; $i++) : ?>
+						<?php if($i == $atual_page) : ?>
+						<a href="popularidade.phtml?page=<?=$i?>" class="btn btn-info" ><?=$i?></a>
+						<?php else: ?>
+						<a href="popularidade.phtml?page=<?=$i?>" class="btn btn-default" ><?=$i?></a>
+						<?php endif; ?>
+					<?php endfor; ?>
+			<?php endif; ?>

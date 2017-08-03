@@ -5,46 +5,46 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<?php session_start(); $data = $_SESSION['data']; ?>
 </head>
 <body>
 <div class="container" style="margin-top:10px;">
-<?php require_once('menu.html');?>
+<?php require_once('Layouts/menu.phtml');?>
 	<div class="panel">
 	<div class="panel-heading">
 		<table class="table table-striped">
 			<tr>
 			<td >Código do Filme: </td>
-			<td><form method="get"><input class="form-control" type="number" name="codigo" id="codigo" min="11"></td>
+			<td><form method="get" action="../Controllers/porCodigo.php"><input class="form-control" type="number" name="codigo" id="codigo" min="11"></td>
 			<td><button type="submit" class="btn btn-primary">Search</button></form></td>	
 			</tr>
 		</table>
 	</div>
 	<div class="panel-body">
-<?php require_once('porCodigo.php'); ?>
 <table class="table table-striped">
 	<tr>
 		<td style="font-weight:600;">Original Title </td>
-		<td><input class="form-control" disabled type="text" value="<?=$title?>"></td>	
+		<td><input class="form-control" disabled type="text" value="<?=$data->original_title?>"></td>	
 	</tr>
 	<tr>
 		<td style="font-weight:bold;">Genres </td>
-		<td><input class="form-control" disabled type="text" value="<?php foreach ($genres as $key => $genre) echo $genre->name . ' - ';?>"></td>			
+		<td><input class="form-control" disabled type="text" value="<?php foreach ($data->genres as $genre) echo $genre->name . ' - ';?>"></td>			
 	</tr>
 	<tr>
 		<td style="font-weight:bold;">Release Data </td>
-		<td><input class="form-control" disabled type="text" value="<?=$release_data?>"></td>	
+		<td><input class="form-control" disabled type="text" value="<?=$data->release_date?>"></td>	
 	</tr>
 	<tr>
 		<td style="font-weight:bold;">Production Contries </td>
-		<td><input class="form-control" disabled type="text" value="<?php foreach ($production_countries as $key => $countrie)echo $countrie->name . ' - ';?>"></td>	
+		<td><input class="form-control" disabled type="text" value="<?php foreach ($data->production_countries as $countrie)echo $countrie->name . ' - ';?>"></td>	
 	</tr>
 	<tr>
 		<td style="font-weight:bold;">Overview </td>
-		<td><textarea class="form-control" cols="50" rows="5" disabled="true"><?=$overview?></textarea></td>
+		<td><textarea class="form-control" cols="50" rows="5" disabled="true"><?=$data->overview?></textarea></td>
 	</tr>
 </table>
 <br>
-<?php echo '<pre>'; var_dump($var);?>
+<?php session_destroy(); /*echo '<pre>'; var_dump($data);*/ ?>
 </div>
 </div>
 </div>

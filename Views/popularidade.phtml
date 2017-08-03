@@ -5,17 +5,26 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<?php session_start(); $results = $_SESSION['results']; $pages = $_SESSION['pages']; $atual = $_GET['page'];?>
+
+	<?php require_once("../Controllers/porPopularidade.php");
+
+	 isset($_GET['page']) ? lista($_GET['page']) : lista(1);
+	 
+	 $atual_page = $_SESSION['atual_page'];
+	 $total_pages = $_SESSION['total_pages'];
+	 $results = $_SESSION['results'];
+
+    ?>
+
 </head>
 <body>
 <div class="container" style="margin-top:10px;">
-<?php require_once('menu.html');?>
+<?php require_once('Layouts/menu.phtml');?>
 	<div class="panel">
 		<div class="panel-heading">
 		<?php include("pagination.phtml"); ?>
 
 		<?php // ------------------------------Resultados - FIlmes ------------------------------------------- // ?>
-
 		</div>
 		<div class="panel-body">
 			<?php foreach ($results as $key=>$result): ?>
@@ -31,6 +40,9 @@
 				</tr>
 				<tr>
 					<td><input class="form-control" disabled type="text" value="<?=$result->vote_average?>"></td>	
+				</tr>
+				<tr>
+					<td><input class="form-control" disabled type="text" value="<?=$result->popularity?>"></td>	
 				</tr>
 			</table>
 			<?php endforeach; ?>
