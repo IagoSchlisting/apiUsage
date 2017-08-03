@@ -8,23 +8,18 @@
 </head>
 <body>
 <div class="container" style="margin-top:10px;">
+<?php require_once('menu.html');?>
 	<div class="panel">
+	<div class="panel-heading">
 		<table class="table table-striped">
-			<form method="get">
 			<tr>
 			<td >Código do Filme: </td>
-			<td><input class="form-control" type="number" name="codigo" id="codigo" min="11"></td>
-			<td><button type="submit" class="btn btn-primary">Search</button></td>	
+			<td><form method="get"><input class="form-control" type="number" name="codigo" id="codigo" min="11"></td>
+			<td><button type="submit" class="btn btn-primary">Search</button></form></td>	
 			</tr>
-			</form>
 		</table>
 	</div>
-<p style="color:green;">Nesse teste você insere um número de 11 á 49998 e ele retorna os dados principais do programa encontrado
- através da API e um var_dump de todo o resultado para maiores detalhes. &nbsp;&nbsp;&nbsp;&nbsp; 
- <a class="btn btn-info" href="https://www.themoviedb.org/"> TheMovieDB </a></p><br>
- <form action="porPopularidade.php">
-<button type="submit" class="btn btn-info">Popularidade</button>
-</form>
+	<div class="panel-body">
 <?php require_once('porCodigo.php'); ?>
 <table class="table table-striped">
 	<tr>
@@ -50,6 +45,8 @@
 </table>
 <br>
 <?php echo '<pre>'; var_dump($var);?>
+</div>
+</div>
 </div>
 </body>
 </html>

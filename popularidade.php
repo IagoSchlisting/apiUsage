@@ -9,29 +9,10 @@
 </head>
 <body>
 <div class="container" style="margin-top:10px;">
+<?php require_once('menu.html');?>
 	<div class="panel">
 		<div class="panel-heading">
-
-		<?php // -------------------------------------------PAGINATION --------------------------------------- // ?>
-     		<a href="porPopularidade.php?number=<?=1?>" class="btn btn-default" ><?=1?></a> ... 
-			
-			<?php if($atual == 1) : ?>
-				<?php for($i=2; $i < 7; $i++): ?>
-				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-			<?php endfor; ?>
-			<?php elseif($atual >= $pages - 5):  ?>
-				<?php for($i=$pages - 5; $i < $pages; $i++): ?>
-				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-			<?php endfor; ?>
-			<?php else: ?>
-				<?php for($i=$atual; $i <= $atual + 4; $i++): ?>
-				<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-				<?php endfor; ?>
-			<?php endif; ?>
-
-			... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-default" ><?=$pages?></a>
-		<?php // --------------------------------------------------------------------------------------------- // ?>
-
+		<?php include("pagination.phtml"); ?>
 
 		<?php // ------------------------------Resultados - FIlmes ------------------------------------------- // ?>
 
@@ -50,37 +31,10 @@
 				</tr>
 			</table>
 			<?php endforeach; ?>
-
 			<?php // ----------------------------------------------------------------------------------------- // ?>
-
-
-
-			<?php // -------------------------------------------PAGINATION ----------------------------------- // ?>
-		     		<a href="porPopularidade.php?number=<?=1?>" class="btn btn-default" ><?=1?></a> ... 
-					
-					<?php if($atual == 1) : ?>
-						<?php for($i=2; $i < 7; $i++): ?>
-						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-					<?php endfor; ?>
-					<?php elseif($atual >= $pages - 5):  ?>
-						<?php for($i=$pages - 5; $i < $pages; $i++): ?>
-						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-					<?php endfor; ?>
-					<?php else: ?>
-						<?php for($i=$atual; $i <= $atual + 4; $i++): ?>
-						<a href="porPopularidade.php?number=<?=$i?>" class="btn btn-default" ><?=$i?></a>
-						<?php endfor; ?>
-					<?php endif; ?>
-
-					... <a href="porPopularidade.php?number=<?=$pages?>" class="btn btn-default" ><?=$pages?></a>
-			<?php // ----------------------------------------------------------------------------------------- // ?>
-
+			<?php include("pagination.phtml"); ?>
 		</div>
    </div>
 </div>
 </body>
 </html>
-
-<?php
-
-?>
