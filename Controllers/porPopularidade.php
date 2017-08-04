@@ -1,11 +1,12 @@
 <?php
 
 require_once("../Classes/ApiData.php");
+require_once("../Classes/Paginator.php");
 
-function lista($number){
-
+function lista($number, $page)
+{
 	session_start();
-
+	
 	$api = new ApiData();
 	$url = $api->getUrl();
 	$key = $api->getKey();
@@ -17,15 +18,10 @@ function lista($number){
 	$data = $api->conectaApi($method);
 	$var = $api->transformData($data);
 
-	$atual_page = $var->page;
-	$total_pages = $var->total_pages;
-	$results = $var->results;
+	$_SESSION['data'] = $var->results;
 
-
-	$_SESSION['results'] = $results;
-	$_SESSION['total_pages'] = $total_pages;
-	$_SESSION['atual_page'] = $atual_page;
-
+	$paginator = new Paginator($page ,$var->page, $var->total_pages);
+	return $paginator;
 }
 
 ?>

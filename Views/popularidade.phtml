@@ -7,13 +7,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 	<?php require_once("../Controllers/porPopularidade.php");
-
-	 isset($_GET['page']) ? lista($_GET['page']) : lista(1);
-	 
-	 $atual_page = $_SESSION['atual_page'];
-	 $total_pages = $_SESSION['total_pages'];
-	 $results = $_SESSION['results'];
-
+	 isset($_GET['page']) ? $paginator = lista($_GET['page'],__FILE__) : $paginator = lista(1,__FILE__);
+	 $data = $_SESSION['data'];
     ?>
 
 </head>
@@ -22,32 +17,35 @@
 <?php require_once('Layouts/menu.phtml');?>
 	<div class="panel">
 		<div class="panel-heading">
-		<?php include("pagination.phtml"); ?>
 
-		<?php // ------------------------------Resultados - FIlmes ------------------------------------------- // ?>
+		<?php $paginator->showPaginator(); ?>
+
+		<?php // ------------------------------------------- FIlmes ------------------------------------------- // ?>
 		</div>
 		<div class="panel-body">
-			<?php foreach ($results as $key=>$result): ?>
+			<?php foreach ($data as $key=>$value): ?>
 			<table class="table table-striped">
 				<tr>
-					<td style="font-weight:bold"><input class="form-control" disabled type="text" value="<?=$result->original_title?>"></td>	
+					<td style="font-weight:bold"><input class="form-control" disabled type="text" value="<?=$value->original_title?>"></td>	
 				</tr>
 				<tr>
-					<td><input class="form-control" disabled type="text" value="<?=$result->release_date?>"></td>	
+					<td><input class="form-control" disabled type="text" value="<?=$value->release_date?>"></td>	
 				</tr>
 				<tr>
-					<td><input class="form-control" disabled type="text" value="<?=$result->overview?>"></td>	
+					<td><input class="form-control" disabled type="text" value="<?=$value->overview?>"></td>	
 				</tr>
 				<tr>
-					<td><input class="form-control" disabled type="text" value="<?=$result->vote_average?>"></td>	
+					<td><input class="form-control" disabled type="text" value="<?=$value->vote_average?>"></td>	
 				</tr>
 				<tr>
-					<td><input class="form-control" disabled type="text" value="<?=$result->popularity?>"></td>	
+					<td><input class="form-control" disabled type="text" value="<?=$value->popularity?>"></td>	
 				</tr>
 			</table>
 			<?php endforeach; ?>
-			<?php // ----------------------------------------------------------------------------------------- // ?>
-			<?php include("pagination.phtml"); session_destroy(); ?>
+
+			<?php // ----------------------------------------------------------------------------------------- // ?> 
+
+			<?php $paginator->showPaginator(); session_destroy(); ?>
 		</div>
    </div>
 </div>

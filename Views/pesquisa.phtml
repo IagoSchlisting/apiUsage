@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<?php session_start(); $data = $_SESSION['data'];?>
+	<?php session_start(); ?>
 </head>
 <body>
 <div class="container" style="margin-top:10px;">
@@ -19,13 +19,21 @@
 			<td><button type="submit" class="btn btn-primary">Search</button></form></td>	
 			</tr>
 		</table>
+		<?php 
+	
+		if(isset($_SESSION['busca']))
+		{
+			require_once("../Controllers/porAproximacao.php");
+			$paginator->showPaginator();
+		}
+		
+		?>
 		</div>
-		<?php // ------------------------------valueados - FIlmes ------------------------------------------- // ?>
+		<?php // ------------------------------ FIlmes ------------------------------------------- // ?>
 		<div class="panel-body">
 			<?php 
-
-			if(!empty($data)) :
-			foreach ($data->results as $value): ?>
+			if(!empty($var)) :
+			foreach ($var->results as $value): ?>
 			<table class="table table-striped">
 				<tr>
 					<td style="font-weight:bold"><input class="form-control" disabled type="text" value="<?=$value->original_title?>"></td>	
@@ -40,9 +48,10 @@
 					<td><input class="form-control" disabled type="text" value="<?=$value->vote_average?>"></td>	
 				</tr>
 			</table>
-			<?php endforeach; endif; session_destroy();?>
+			<?php endforeach; endif;?>
 			<?php // ----------------------------------------------------------------------------------------- // ?>
 		</div>
+
    </div>
  </div>
 </body>

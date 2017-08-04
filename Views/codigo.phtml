@@ -42,6 +42,10 @@
 		<td style="font-weight:bold;">Overview </td>
 		<td><textarea class="form-control" cols="50" rows="5" disabled="true"><?=$data->overview?></textarea></td>
 	</tr>
+	<tr>
+		<td style="font-weight:bold;">Vote </td>
+		<td><input class="form-control" disabled type="text" value="<?=$data->vote_average?>"></td>	
+	</tr>
 </table>
 <br>
 <?php session_destroy(); /*echo '<pre>'; var_dump($data);*/ ?>

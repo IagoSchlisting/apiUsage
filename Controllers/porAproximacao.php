@@ -1,23 +1,34 @@
 <?php
 
-session_start();
 
 require_once("../Classes/ApiData.php");
+require_once("../Classes/Paginator.php");
 
-$busca = $_GET['busca'];
-$search = '3/search/movie';
-$query = '&query=' . $busca;
+	if(!isset($_SESSION['busca']))
+	{
+		session_start();
+		$_SESSION['busca'] = $_GET['busca'];
+		header('Location: ../Views/pesquisa.phtml?page=1');
 
-$api = new ApiData();
-$url = $api->getUrl();
-$key = $api->getKey();
+	}
+	else
+	{
+		$number = $_GET['page'];
+		$search = '3/search/movie';
+		$query = '&query=' . $_SESSION['busca'];
+		$page = '&page=' .$number;
 
-$method = $url.$search.$key.$query;
+		$api = new ApiData();
+		$url = $api->getUrl();
+		$key = $api->getKey();
 
-$data = $api->conectaApi($method);
+		$method = $url.$search.$key.$query.$page;
 
-$_SESSION['data'] = $api->transformData($data);
+		$data = $api->conectaApi($method);
 
-header('Location: ../Views/pesquisa.phtml'); exit;
+		$var = $api->transformData($data);
 
+		$paginator = new Paginator('pesquisa.phtml' ,$var->page, $var->total_pages);
+		
+	}
 ?>
