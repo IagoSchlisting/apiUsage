@@ -1,10 +1,9 @@
 <?php require_once('Layouts/cabecalho.phtml');?>
 
-	<?php require_once("../Controllers/porPopularidade.php");
+	<?php require_once("../Controllers/porNota.php");
 	 isset($_GET['page']) ? $paginator = lista($_GET['page'],__FILE__) : $paginator = lista(1,__FILE__);
 	 $data = $_SESSION['data'];
     ?>
-
 	<div class="panel">
 		<div class="panel-heading">
 
