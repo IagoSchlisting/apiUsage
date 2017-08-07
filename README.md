@@ -6,4 +6,4 @@ Busca através de um código determinado.
 
 Através de aproximação por palavra-chave.
 
-Através de rankiamento de popularidade.
+Através de rankiamento e popularidade.
